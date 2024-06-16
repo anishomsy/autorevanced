@@ -7,6 +7,13 @@ from apkpure.apkpure import ApkPure
 import re
 
 
+def autorevanced(name: str = "youtube"):
+    revanced_files = get_files()
+    apk = get_apk(name)
+    output = build(apk, revanced_files)
+    return output
+
+
 def get_files():
     urls = [
         "https://api.revanced.app/v2/revanced-patches/releases/latest",
@@ -83,7 +90,7 @@ def build(apk="", revanced_files=[]):
     if err_code.returncode != 0:
         raise Exception(err_code.stderr)
 
-    return [err_code.stdout, output]
+    return err_code.stdout
 
 
 # def main():
