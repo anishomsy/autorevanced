@@ -97,68 +97,6 @@ def build(apk="", revanced_files=[]):
     return err_code.stdout
 
 
-# def main():
-#     if len(sys.argv) != 2:
-#         print("Please input file name")
-#         return
-#
-#     youtube_file = sys.argv[1]
-#     print(youtube_file)
-#     # Get the patch
-#     print("Getting Patches...")
-#     patches = requests.get(
-#         "https://api.revanced.app/v2/revanced-patches/releases/latest"
-#     ).json()
-#     print(f"Latest Version: {patches["release"]["metadata"]["name"]}")
-#     patches = patches["release"]["assets"]
-#
-#     for i in range(len(patches) - 1):
-#
-#         downloader(patches[i]["browser_download_url"], patches[i]["name"])
-#
-#     # Download Integrations
-#     print("Getting Integrations..")
-#
-#     integrations = requests.get(
-#         "https://api.revanced.app/v2/revanced-integrations/releases/latest"
-#     ).json()
-#     print(f"Latest Version: {integrations["release"]["metadata"]["name"]}")
-#     integrations = integrations["release"]["assets"]
-#     for i in range(len(integrations) - 1):
-#         downloader(integrations[i]["browser_download_url"], integrations[i]["name"])
-#
-#     # Get Revanced-CLI
-#     print("Getting revanced-cli...")
-#     rcli = requests.get(
-#         "https://api.revanced.app/v2/revanced-cli/releases/latest"
-#     ).json()
-#     print(f"Latest Version: {rcli["release"]["metadata"]["name"]}")
-#     rcli = rcli["release"]["assets"]
-#     for i in range(len(rcli) - 1):
-#         downloader(rcli[i]["browser_download_url"], rcli[i]["name"])
-#
-#     print("Building File")
-#
-#     path = pathlib.Path(__file__).parent.resolve()
-#     print(path)
-#     file = subprocess.run(
-#         [
-#             f"cd {path} && java -jar {rcli[0]['name']} patch \"{str(youtube_file)}\" -b {patches[1]
-#                                                                                          ['name']} -m {integrations[0]["name"]} -o revanced.apk"
-#         ],
-#         capture_output=True,
-#         text=True,
-#         check=False,
-#         shell=True,
-#     )
-#     if file.returncode != 0:
-#         print(file.stderr)
-#         return
-#
-#     print(file.stdout)
-#
-
-
 def downloader(url: str) -> str:
     headers = {
         "User-Agent": "Mozilla/5.0 (Windows NT 6.1; Win64; x64; rv:47.0) Gecko/20100101 Firefox/47.0"
