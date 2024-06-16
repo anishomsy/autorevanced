@@ -15,6 +15,7 @@ def autorevanced(name: str = "youtube"):
 
 
 def get_files():
+    # Loop through the urls and get the files
     urls = [
         "https://api.revanced.app/v2/revanced-patches/releases/latest",
         "https://api.revanced.app/v2/revanced-integrations/releases/latest",
@@ -40,6 +41,7 @@ def get_files():
 
 
 def get_apk(name: str = "com.google.android.youtube", version: str = "Latest"):
+    # get the apk from apkpure
     package_name = name
     api = ApkPure()
     info = ""
@@ -51,6 +53,7 @@ def get_apk(name: str = "com.google.android.youtube", version: str = "Latest"):
     with open("./revanced-files/patches.json") as jdata:
         data = json.load(jdata)
 
+    # get the current recommended revanced version. This need to be improved
     compatable_versions = []
     for item in data:
         if (
@@ -59,6 +62,7 @@ def get_apk(name: str = "com.google.android.youtube", version: str = "Latest"):
         ):
             compatable_versions = item["compatiblePackages"][0]["versions"]
             break
+    # Get the apk
     if not version == "Latest":
         if version in compatable_versions:
             return api.download(package_name, version)
